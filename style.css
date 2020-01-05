@@ -1,0 +1,133 @@
+body{
+    background: rgba(0, 0, 0, 0.9);/*i want the background to be black but i want a little bit of opacity..you know like transparency
+                                        so for red green blue ive put 0 (because i want it in black and for a little bit of opacity 
+                                        the alpha value as 0.9*/
+    margin: 0;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.showcase::after{/*instead of adding a div of class background..im using  css pseudo element called "after" which means it basically 
+    kind of inserts it through the css without actually being in the dawn..so we do that by using "showcase::after"
+    */
+    content: '';
+    height: 100vh;/*the value 100vh is gonna take the entier browser no matter how short or tall the browser is..its gonna take that height*/
+    width: 100%;
+    background-image: url(web.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;/*if you save it till hear its still not gonna display it..so we need to put the display tag with block see below*/
+    display: block;
+    filter: blur(10px);/*we use a filter property with blur*/
+    -webkit-filter: blur(10px);/*i've added a prefix of webkit-filter.. you can see that it is blur and its the default state
+    (we want it blur until we hover over it and it goes to normal and then that logo should blur..that's the functionality we want)*/
+    transition: all 1000ms;/*basically anty properties that can transition like positon stuff ike that.. obivisly the blur or filter 
+    whatever..we want to apply "trasition all and apply it for 1000ms"*/
+}
+
+.showcase:hover::after{
+    filter: blur(0);
+    -webkit-filter: blur(0px);
+}
+.showcase:hover .content{  /*so when we want the content blur when we hover over the background and the image (background)comes into focus)
+            so ive added the same as".showcase:hover with a class of content"*/
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}
+.content{
+    position: absolute; /*so that the content with logo goes inside the image..so we'll have a issue(image is over the content)
+     there to solve it we use Z-index*/
+    z-index: 1; /*basically the higher it is the closer to you it is..you can see after adding z-inder the logo and the content will be above the
+    background image*/
+    top: 10%;
+    left: 50%;
+    margin-top: 105px; /*the margin top and left is gonna bring it in the center*/
+    margin-left: -145px;
+    width: 300px;
+    height: 350px;
+    text-align: center;
+    transition: all 1000ms;
+}
+.content .logo{
+    height: 180px;
+    width: 180px;
+}
+
+.content .title{
+    font-size: 2.2rem; /* 1 rem units is equal to whatever the px of html element wihich by default  is 16..so this would be 2.2times 16*/
+    margin-top: 1rem;
+}
+.content .text{
+    line-height: 1.7;
+    margin-top: 1rem;
+    color: black;
+}
+.container{
+    max-width: 960px;
+    margin: auto;
+    overflow: hidden;
+    padding: 4rem/*top&bottom*/ 1rem/*left and right*/
+}
+.grid-3{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr; 
+}
+.center{
+    text-align: center;
+    margin: 0;
+}
+.bg-light{
+    background: whitesmoke;
+    color: black;
+}
+.bg-dark{
+    background: black;
+    color: wheat;
+}
+.grid-2{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr; 
+}
+footer {
+    padding: 2rem;
+}
+footer p{
+    margin: 0;
+}
+/* small screens */
+@media(max-width:560px){
+
+.showcase::after{
+    height: 50vh;
+}
+
+.content{
+    top: 5%;
+    margin-top: 5px;
+}
+.content .logo{
+    height: 140px;
+    width: 140px;
+}
+.content .text{
+    display: none;
+}
+.grid-2, .grid-3{
+    grid-template-columns: 1fr;
+}
+ .services div{
+    border-bottom: black dashed 1px;
+    padding: 1.2rem 1.5rem;
+    
+ }
+}
+/* landscape */
+@media(max-height: 500px){
+    .content .title, .content ,text{
+        display: block;
+    }
+    .content{
+        top: 0;
+    }
+}
